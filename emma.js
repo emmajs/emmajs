@@ -25,3 +25,23 @@ emmajs.toggleCatchTheMice = function toggleCatchTheMice() {
     };
   }
 };
+
+emmajs.toggleCatnip = function toggleCatnip() {
+  if(emmajs.catnip) {
+    emmajs.catnip = false;
+    document.head.removeChild(emmajs.style);
+    var elements = document.querySelectorAll('body *');
+    for(var i=0; i<elements.length;i++) {
+      elements.item(i).classList.remove('emmajs-catnip');
+    }
+  } else {
+    emmajs.catnip = true;
+    emmajs.style = document.createElement("style");
+    emmajs.style.appendChild(document.createTextNode('<style type="text/css">@-webkit-keyframes rotating{from{-ms-transform:rotate(0deg);-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg)}to{-ms-transform:rotate(360deg);-moz-transform:rotate(360deg);-webkit-transform:rotate(360deg);-o-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes rotating{from{-ms-transform:rotate(0deg);-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg)}to{-ms-transform:rotate(360deg);-moz-transform:rotate(360deg);-webkit-transform:rotate(360deg);-o-transform:rotate(360deg);transform:rotate(360deg)}}.emmajs-catnip{-webkit-animation:rotating 2s linear infinite;-moz-animation:rotating 2s linear infinite;-ms-animation:rotating 2s linear infinite;-o-animation:rotating 2s linear infinite;animation:rotating 2s linear infinite}</style>'));
+    document.head.appendChild(emmajs.style);
+    var elements = document.querySelectorAll('body *');
+    for(var i=0; i<elements.length;i++) {
+      elements.item(i).classList.add('emmajs-catnip');
+    }
+  }
+};
